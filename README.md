@@ -4,6 +4,8 @@
 
 Automatic icon resizing for Cordova. Create an icon in the root folder of your Cordova project and use cordova-icon to automatically resize and copy it for all the platforms your project supports (currenty works with iOS, Android, Windows 10 and OSX).
 
+This Project is forked from ([AlexDisler/cordova-icon](https://github.com/AlexDisler/cordova-icon)) and modified for cordova-android 8 and android sdk 28.
+
 ### Installation
 
 ```bash
@@ -11,12 +13,12 @@ $ sudo apt-get install imagemagick
 $ # on Mac: brew install imagemagick
 $ # on Windows: http://www.imagemagick.org/script/binary-releases.php#windows (check "Legacy tools")
 
-$ sudo npm install cordova-icon -g
+$ sudo npm install cordova-icon-android-fix -g
 ```
 If you are using an older version of cordova (before 7.x):
 
 ```bash
-$ sudo npm install cordova-icon@0.13.0 -g
+$ sudo npm install cordova-icon-android-fix@1.0.2 -g
 ```
 
 ### Requirements
@@ -32,15 +34,15 @@ You can provide a platform-specific icon by naming it `icon-[platform].png`
 (e.g `icon-android.png`, `icon-ios.png`).
 Then run:
 
-     $ cordova-icon
+     $ cordova-icon-fix
 
 You also can specify manually a location for your `config.xml` or `icon.png`:
 
-     $ cordova-icon --config=config.xml --icon=icon.png
+     $ cordova-icon-fix --config=config.xml --icon=icon.png
 
 If you run a old version of Cordova for iOS / Mac and you need your files in `/Resources/icons/`, use this option:
 
-     $ cordova-icon --xcode-old
+     $ cordova-icon-fix --xcode-old
 
 For good results, your file should be:
 
@@ -76,13 +78,6 @@ That's it. Now every time you `cordova build`, the icons will be auto generated.
 
 Check out [cordova-splash](https://github.com/AlexDisler/cordova-splash)
 
-### More
-
-- [cordova-plugin-inapppurchase](https://github.com/AlexDisler/cordova-plugin-inapppurchase) - a lightweight cordova plugin for in app purchases on iOS/Android
-- [ng-special-offer](https://github.com/AlexDisler/ng-special-offer) - prompt users to rate your cordova app in the app store
-- [ionic-lock-screen](https://github.com/AlexDisler/ionic-lock-screen) - passcode lock screen for ionic (with touch id support for iOS)
-- [ionic-zoom-view](https://github.com/AlexDisler/ionic-zoom-view) - an easy way to add a zoom view to images using an ionic modal
-- [ng-persist](https://github.com/AlexDisler/ng-persist) - store data on mobile devices (using cordova) that persists even if the user reinstalls the app
 
 ### License
 

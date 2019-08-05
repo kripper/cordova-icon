@@ -1,7 +1,7 @@
 {
   "name": "cordova-icon-android-fix",
-  "version": "1.0.1",
-  "description": "Automatic icon resizing for Cordova",
+  "version": "1.0.3",
+  "description": "Automatic icon resizing for Cordova (fixed for cordova-android version 8, and android sdk 28)",
   "main": "index.js",
   "preferGlobal": true,
   "directories": {
@@ -12,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/AlexDisler/cordova-icon.git"
+    "url": "git://github.com/steppe87/cordova-icon.git"
   },
   "keywords": [
     "cordova",
     "icon",
     "resize"
   ],
-  "author": "Alex Disler",
+  "author": "Stephan Müller",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AlexDisler/cordova-icon/issues"
+    "url": "https://github.com/steppe87/cordova-icon/issues"
   },
-  "homepage": "https://github.com/AlexDisler/cordova-icon",
+  "homepage": "https://github.com/steppe87/cordova-icon",
   "dependencies": {
     "colors": "^0.6.2",
     "fs-extra": "^0.30.0",
