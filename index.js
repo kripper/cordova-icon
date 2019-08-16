@@ -84,18 +84,18 @@ var getPlatforms = function (projectName) {
       { name : 'mipmap-xhdpi/icon.png', size : 96 },
       { name : 'mipmap-xxhdpi/icon.png', size : 144 },
       { name : 'mipmap-xxxhdpi/icon.png', size : 192 },
-      { name : 'mipmap-hdpi/ic_launcher.png',  size : 72 },
-      { name : 'mipmap-ldpi/ic_launcher.png',  size : 36 },
-      { name : 'mipmap-mdpi/ic_launcher.png',  size : 48 },
-      { name : 'mipmap-xhdpi/ic_launcher.png', size : 96 },
-      { name : 'mipmap-xxhdpi/ic_launcher.png', size : 144 },
-      { name : 'mipmap-xxxhdpi/ic_launcher.png', size : 192 },
-      { name : 'mipmap-hdpi-v26/ic_launcher_foreground.png',  size : 72 },
-      { name : 'mipmap-ldpi-v26/ic_launcher_foreground.png',  size : 36 },
-      { name : 'mipmap-mdpi-v26/ic_launcher_foreground.png',  size : 48 },
-      { name : 'mipmap-xhdpi-v26/ic_launcher_foreground.png', size : 96 },
-      { name : 'mipmap-xxhdpi-v26/ic_launcher_foreground.png', size : 144 },
-      { name : 'mipmap-xxxhdpi-v26/ic_launcher_foreground.png', size : 192 },
+      { name : 'mipmap-hdpi/ic_launcher.png',  size : 72, isAdaptive: true},
+      { name : 'mipmap-ldpi/ic_launcher.png',  size : 36, isAdaptive: true },
+      { name : 'mipmap-mdpi/ic_launcher.png',  size : 48, isAdaptive: true },
+      { name : 'mipmap-xhdpi/ic_launcher.png', size : 96, isAdaptive: true },
+      { name : 'mipmap-xxhdpi/ic_launcher.png', size : 144, isAdaptive: true },
+      { name : 'mipmap-xxxhdpi/ic_launcher.png', size : 192, isAdaptive: true },
+      { name : 'mipmap-hdpi-v26/ic_launcher_foreground.png',  size : 72, isAdaptive: true },
+      { name : 'mipmap-ldpi-v26/ic_launcher_foreground.png',  size : 36, isAdaptive: true },
+      { name : 'mipmap-mdpi-v26/ic_launcher_foreground.png',  size : 48, isAdaptive: true },
+      { name : 'mipmap-xhdpi-v26/ic_launcher_foreground.png', size : 96, isAdaptive: true },
+      { name : 'mipmap-xxhdpi-v26/ic_launcher_foreground.png', size : 144, isAdaptive: true },
+      { name : 'mipmap-xxxhdpi-v26/ic_launcher_foreground.png', size : 192, isAdaptive: true },
     ]
   });
   platforms.push({
@@ -234,37 +234,56 @@ var generateIcon = function (platform, icon) {
   if (!fs.existsSync(dst)) {
     fs.mkdirsSync(dst);
   }
-  ig.resize({
-    srcPath: srcPath,
-    dstPath: dstPath,
-    quality: 1,
-    format: 'png',
-    width: icon.size,
-    height: icon.size
-  } , function(err, stdout, stderr){
-    if (err) {
-      deferred.reject(err);
-    } else {
-      deferred.resolve();
-      display.success(icon.name + ' created');
-    }
-  });
-  if (icon.height) {
-    ig.crop({
+  if (icon.isAdaptive) {
+    ig.resize({
       srcPath: srcPath,
       dstPath: dstPath,
       quality: 1,
       format: 'png',
-      width: icon.size,
-      height: icon.height
+      width: icon.size * 1.5,
+      height: icon.size * 1.5,
+      customArgs: ['-gravity', 'Center', '-extent', icon.size * 2.25 + 'x' + icon.size * 2.25]
     } , function(err, stdout, stderr){
       if (err) {
         deferred.reject(err);
       } else {
         deferred.resolve();
-        display.success(icon.name + ' cropped');
+        display.success(icon.name + ' created');
       }
     });
+  } else {
+    ig.resize({
+      srcPath: srcPath,
+      dstPath: dstPath,
+      quality: 1,
+      format: 'png',
+      width: icon.size,
+      height: icon.size
+    } , function(err, stdout, stderr){
+      if (err) {
+        deferred.reject(err);
+      } else {
+        deferred.resolve();
+        display.success(icon.name + ' created');
+      }
+    });
+    if (icon.height) {
+      ig.crop({
+        srcPath: srcPath,
+        dstPath: dstPath,
+        quality: 1,
+        format: 'png',
+        width: icon.size,
+        height: icon.height
+      } , function(err, stdout, stderr){
+        if (err) {
+          deferred.reject(err);
+        } else {
+          deferred.resolve();
+          display.success(icon.name + ' cropped');
+        }
+      });
+    }
   }
   return deferred.promise;
 };
