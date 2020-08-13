@@ -1,8 +1,8 @@
-# cordova-icon
-
-## fixes:
+### Info of fixes:
 - Android Icon fixes according to ([Android Adaptive Icons Guideline](https://developer.android.com/guide/practices/ui_guidelines/icon_design_adaptive?hl=de)). We are just deliver Icons in right sizes, having a padding within the icon.
 - iOS Icons fixes according to iOS ([Human Interface Guideline for App-Icons](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)). We are delivering the missing sizes for cordova icons in iPhone/iPad Settings and Notifications.
+
+# cordova-icon
 
 <img src="cordova-icon-resize.png"/>
 
