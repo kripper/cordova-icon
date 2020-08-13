@@ -1,5 +1,9 @@
 # cordova-icon
 
+## fixes:
+- Android Icon fixes according to ([Android Adaptive Icons Guideline](https://developer.android.com/guide/practices/ui_guidelines/icon_design_adaptive?hl=de)). We are just deliver Icons in right sizes, having a padding within the icon.
+- iOS Icons fixes according to iOS ([Human Interface Guideline for App-Icons](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/)). We are delivering the missing sizes for cordova icons in iPhone/iPad Settings and Notifications.
+
 <img src="cordova-icon-resize.png"/>
 
 Automatic icon resizing for Cordova. Create an icon in the root folder of your Cordova project and use cordova-icon to automatically resize and copy it for all the platforms your project supports (currenty works with iOS, Android, Windows 10 and OSX).
@@ -13,12 +17,12 @@ $ sudo apt-get install imagemagick
 $ # on Mac: brew install imagemagick
 $ # on Windows: http://www.imagemagick.org/script/binary-releases.php#windows (check "Legacy tools")
 
-$ sudo npm install cordova-icon-android-fix -g
+$ sudo npm install cordova-icon-fix -g
 ```
 If you are using an older version of cordova (before 7.x):
 
 ```bash
-$ sudo npm install cordova-icon-android-fix@1.0.2 -g
+$ sudo npm install cordova-icon-fix@1.0.2 -g
 ```
 
 ### Requirements
