@@ -87,6 +87,20 @@ var getPlatforms = function (projectName) {
       { name : 'drawable-xhdpi/icon.png', size : 96 },
       { name : 'drawable-xxhdpi/icon.png', size : 144 },
       { name : 'drawable-xxxhdpi/icon.png', size : 192 },
+
+      // Notification icons
+      { name : 'drawable-land-hdpi/fcm_push_icon.png',  size : 36, alpha: true },
+      { name : 'drawable-land-mdpi/fcm_push_icon.png',  size : 24, alpha: true },
+      { name : 'drawable-land-xhdpi/fcm_push_icon.png', size : 48, alpha: true },
+      { name : 'drawable-land-xxhdpi/fcm_push_icon.png', size : 72, alpha: true },
+      { name : 'drawable-land-xxxhdpi/fcm_push_icon.png', size : 96, alpha: true },
+
+      { name : 'drawable-port-hdpi/fcm_push_icon.png',  size : 36, alpha: true },
+      { name : 'drawable-port-mdpi/fcm_push_icon.png',  size : 24, alpha: true },
+      { name : 'drawable-port-xhdpi/fcm_push_icon.png', size : 48, alpha: true },
+      { name : 'drawable-port-xxhdpi/fcm_push_icon.png', size : 72, alpha: true },
+      { name : 'drawable-port-xxxhdpi/fcm_push_icon.png', size : 96, alpha: true },
+
       { name : 'mipmap-hdpi/icon.png',  size : 72 },
       { name : 'mipmap-ldpi/icon.png',  size : 36 },
       { name : 'mipmap-mdpi/icon.png',  size : 48 },
@@ -243,6 +257,12 @@ var generateIcon = function (platform, icon) {
   if (!fs.existsSync(dst)) {
     fs.mkdirsSync(dst);
   }
+
+  var customArgs = [];
+  if(icon.alpha) {
+    customArgs = ['-transparent', 'white'];
+  }
+
   if (icon.isAdaptive) {
     ig.resize({
       srcPath: srcPath,
@@ -267,7 +287,8 @@ var generateIcon = function (platform, icon) {
       quality: 1,
       format: 'png',
       width: icon.size,
-      height: icon.size
+      height: icon.size,
+      customArgs: customArgs
     } , function(err, stdout, stderr){
       if (err) {
         deferred.reject(err);
